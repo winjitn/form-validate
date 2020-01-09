@@ -15,7 +15,7 @@ class App extends React.Component {
     return re.test(String(email).toLowerCase());
   }
 
-  validate(e) {
+  async validate(e) {
     e.preventDefault();
     const user = this.user.current;
     const password = this.password.current;
@@ -76,9 +76,10 @@ class App extends React.Component {
       }
     }
 
-    this.setState(update);
+    await this.setState(update);
+
     for (var x in this.state) {
-      if (this.state[x] === false) return;
+      if (this.state[x] === true) return;
     }
 
     const obj = this;
